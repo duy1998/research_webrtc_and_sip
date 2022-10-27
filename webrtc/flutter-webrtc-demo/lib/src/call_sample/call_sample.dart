@@ -23,6 +23,7 @@ class _CallSampleState extends State<CallSample> {
   Session? _session;
   DesktopCapturerSource? selected_source_;
   bool _waitAccept = false;
+  bool mute = true;
 
   // ignore: unused_element
   _CallSampleState();
@@ -242,7 +243,9 @@ class _CallSampleState extends State<CallSample> {
   }
 
   _muteMic() {
-    _signaling?.muteMic();
+    setState(() {
+      mute = _signaling?.muteMic() ?? false;
+    });
   }
 
   _buildRow(context, peer) {
@@ -315,7 +318,7 @@ class _CallSampleState extends State<CallSample> {
                       backgroundColor: Colors.pink,
                     ),
                     FloatingActionButton(
-                      child: const Icon(Icons.mic_off),
+                      child: Icon(mute ? Icons.mic_external_on : Icons.mic_off),
                       tooltip: 'Mute Mic',
                       onPressed: _muteMic,
                     )

@@ -154,7 +154,7 @@ class _MyCallScreenWidget extends State<CallScreenWidget>
   void registrationStateChanged(RegistrationState state) {}
 
   void _cleanUp() {
-    if(_localStream == null) return;
+    if (_localStream == null) return;
     _localStream?.getTracks().forEach((track) {
       track.stop();
     });
@@ -503,14 +503,20 @@ class _MyCallScreenWidget extends State<CallScreenWidget>
 
     if (!voiceonly && _remoteStream != null) {
       stackWidgets.add(Center(
-        child: RTCVideoView(_remoteRenderer!),
+        child: RTCVideoView(
+          _remoteRenderer!,
+          filterQuality: FilterQuality.high,
+        ),
       ));
     }
 
     if (!voiceonly && _localStream != null) {
       stackWidgets.add(Container(
         child: AnimatedContainer(
-          child: RTCVideoView(_localRenderer!),
+          child: RTCVideoView(
+            _localRenderer!,
+            filterQuality: FilterQuality.high,
+          ),
           height: _localVideoHeight,
           width: _localVideoWidth,
           alignment: Alignment.topRight,

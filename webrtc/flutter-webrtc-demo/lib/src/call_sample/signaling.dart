@@ -131,11 +131,13 @@ class Signaling {
     }
   }
 
-  void muteMic() {
+  bool muteMic() {
     if (_localStream != null) {
       bool enabled = _localStream!.getAudioTracks()[0].enabled;
       _localStream!.getAudioTracks()[0].enabled = !enabled;
     }
+
+    return _localStream!.getAudioTracks()[0].enabled;
   }
 
   void invite(String peerId, String media, bool useScreen) async {

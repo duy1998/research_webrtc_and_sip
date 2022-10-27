@@ -57,7 +57,7 @@ Note: You must install and run Docker
 1. Directory to Asterisk server
 
 ```bash
-cd sip/docker/asterisk
+cd sip/dockers/asterisk
 ```
 
 2. Run `make`
@@ -66,8 +66,8 @@ cd sip/docker/asterisk
 
 #### Mobile
 
-1. `cd sip/dart-sip-ua`
-2. `flutter packages get`
+1. `cd sip/dart-sip-ua/example`
+2. `flutter pub get`
 3. `flutter run`
 4. Register with server
 

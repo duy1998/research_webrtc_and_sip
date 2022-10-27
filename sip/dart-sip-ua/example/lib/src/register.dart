@@ -92,27 +92,37 @@ class _MyRegisterWidget extends State<RegisterWidget>
   }
 
   void _handleSave(BuildContext context) {
-    if (_wsUriController.text == '') {
-      _alert(context, "WebSocket URL");
-    } else if (_sipUriController.text == '') {
-      _alert(context, "SIP URI");
+    try {
+      if (_wsUriController.text == '') {
+        _alert(context, "WebSocket URL");
+      } else if (_sipUriController.text == '') {
+        _alert(context, "SIP URI");
+      }
+
+      UaSettings settings = UaSettings();
+
+      settings.webSocketUrl = _wsUriController.text;
+      settings.webSocketSettings.extraHeaders = _wsExtraHeaders;
+      settings.webSocketSettings.allowBadCertificate = true;
+      //settings.webSocketSettings.userAgent = 'Dart/2.8 (dart:io) for OpenSIPS.';
+
+      settings.uri = _sipUriController.text;
+      settings.authorizationUser = _authorizationUserController.text;
+      settings.password = _passwordController.text;
+      settings.displayName = _displayNameController.text;
+      settings.userAgent = 'Dart SIP Client v1.0.0';
+      settings.dtmfMode = DtmfMode.RFC2833;
+
+      helper!.start(settings);
+    } catch (error) {
+      var snackBar = SnackBar(
+        content: Text(error.toString()),
+      );
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
-
-    UaSettings settings = UaSettings();
-
-    settings.webSocketUrl = _wsUriController.text;
-    settings.webSocketSettings.extraHeaders = _wsExtraHeaders;
-    settings.webSocketSettings.allowBadCertificate = true;
-    //settings.webSocketSettings.userAgent = 'Dart/2.8 (dart:io) for OpenSIPS.';
-
-    settings.uri = _sipUriController.text;
-    settings.authorizationUser = _authorizationUserController.text;
-    settings.password = _passwordController.text;
-    settings.displayName = _displayNameController.text;
-    settings.userAgent = 'Dart SIP Client v1.0.0';
-    settings.dtmfMode = DtmfMode.RFC2833;
-
-    helper!.start(settings);
   }
 
   @override
