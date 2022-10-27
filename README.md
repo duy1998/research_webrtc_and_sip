@@ -41,3 +41,46 @@ go run cmd/server/main.go
 
 #### Web
 - if you already run `flutter-webrtc-server` then open https://0.0.0.0:8086
+
+## screenshots
+# iOS
+<img width="180" height="320" src="https://raw.githubusercontent.com/cloudwebrtc/flutter-webrtc-demo/master/screenshots/flutter-webrtc-ios-example.png"/> <img width="180" height="320" src="https://raw.githubusercontent.com/cloudwebrtc/flutter-webrtc-demo/master/screenshots/ios-01.jpeg"/> <img width="180" height="320" src="https://raw.githubusercontent.com/cloudwebrtc/flutter-webrtc-demo/master/screenshots/ios-02.jpeg"/>
+# Android
+<img width="180" height="320" src="https://raw.githubusercontent.com/cloudwebrtc/flutter-webrtc-demo/master/screenshots/flutter-webrtc-android-example.png"/> <img width="180" height="320" src="https://raw.githubusercontent.com/cloudwebrtc/flutter-webrtc-demo/master/screenshots/android-01.png"/> <img width="180" height="320" src="https://raw.githubusercontent.com/cloudwebrtc/flutter-webrtc-demo/master/screenshots/android-02.png"/>
+
+## SIP
+
+### Build Server
+
+Note: You must install Docker
+
+1. Directory to Asterisk server
+
+```bash
+cd sip/docker/asterisk
+```
+
+2. Run `make`
+
+### Build Client
+
+#### Mobile
+
+1. `cd sip/dart-sip-ua`
+2. `flutter packages get`
+3. `flutter run`
+4. Register with server
+
+- server_ip=your docker host ip
+
+- Weobsocket: wss://server_ip:8089/ws
+- SIP URI: 500@server_ip
+- Authorizathion User: 500
+- Password: 500
+- Display Name: Bob
+
+Note: We need to register in two devices to testing
+
+### Screenshot
+
+<img width="180" height="400" src="https://github.com/flutter-webrtc/dockers/raw/main/screenshots/asterisk/01.jpg"/> <img width="180" height="400" src="https://github.com/flutter-webrtc/dockers/raw/main/screenshots/asterisk/02.jpg"/>
