@@ -52,7 +52,7 @@ go run cmd/server/main.go
 
 ### Build Server
 
-Note: You must install Docker
+Note: You must install and run Docker
 
 1. Directory to Asterisk server
 
